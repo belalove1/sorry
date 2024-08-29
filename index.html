@@ -15,6 +15,11 @@
             margin: 0;
             overflow: hidden;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
             display: none;
@@ -27,6 +32,12 @@
             border: 2px solid #ff69b4;
             position: relative;
             animation: bounceIn 1s ease-out;
+            z-index: 5;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: #ff69b4 #fff5f8;
         }
         h1 {
             color: #ff69b4;
@@ -81,18 +92,25 @@
             color: #ff69b4;
         }
         .card, .final-card {
-            display: none;
-            position: absolute;
-            width: 200px;
-            padding: 10px;
-            background-color: #fff5f8;
-            border: 2px solid #ff69b4;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(255,105,180,0.3);
-            text-align: center;
-            transition: transform 0.5s;
-            cursor: pointer;
-        }
+    display: none;
+    position: fixed; /* Change from absolute to fixed */
+    width: 200px;
+    padding: 10px;
+    background-color: #fff5f8;
+    border: 2px solid #ff69b4;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(255,105,180,0.3);
+    text-align: center;
+    transition: transform 0.5s;
+    cursor: pointer;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: #ff69b4 #fff5f8;
+    z-index: 1000; /* Add this line to ensure it's above other elements */
+}
+
         .card.show {
             display: block;
         }
@@ -119,7 +137,7 @@
         }
         .balloon {
             position: absolute;
-            width: 40px;
+            width: 100px;
             animation: float 5s infinite ease-in-out;
         }
         .balloon:nth-child(1) { left: 10%; top: 10%; animation-delay: 0s; }
@@ -135,6 +153,80 @@
         .sparkle:nth-child(2) { right: 5%; top: 10%; animation-delay: 0.5s; }
         .sparkle:nth-child(3) { left: 15%; bottom: 15%; animation-delay: 1s; }
         .sparkle:nth-child(4) { right: 15%; bottom: 20%; animation-delay: 1.5s; }
+        
+        #clickArea, .loading {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        
+        #clickArea {
+            background-color: #ff69b4;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(255, 105, 180, 0.2);
+        }
+        
+        #clickArea:hover {
+            background-color: #ff1493;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        
+        .loading {
+            font-size: 24px;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+        
+        .container::-webkit-scrollbar,
+        .card::-webkit-scrollbar,
+        .final-card::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .container::-webkit-scrollbar-track,
+        .card::-webkit-scrollbar-track,
+        .final-card::-webkit-scrollbar-track {
+            background: #fff5f8;
+            border-radius: 10px;
+        }
+        
+        .container::-webkit-scrollbar-thumb,
+        .card::-webkit-scrollbar-thumb,
+        .final-card::-webkit-scrollbar-thumb {
+            background-color: #ff69b4;
+            border-radius: 10px;
+            border: 2px solid #fff5f8;
+        }
+        
+        .container::-webkit-scrollbar-thumb:hover,
+        .card::-webkit-scrollbar-thumb:hover,
+        .final-card::-webkit-scrollbar-thumb:hover {
+            background-color: #ff1493;
+        }
+        
+        .confetti {
+            position: fixed;
+            font-size: 1.5rem;
+            animation: fall linear forwards;
+            z-index: 1000;
+        }
+        
+        @media (max-width: 400px) {
+            .container, .card, .final-card {
+                font-size: 14px;
+            }
+            .character {
+                width: 80px;
+            }
+        }
+        
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
@@ -169,83 +261,24 @@
             0%, 100% { opacity: 0; transform: scale(0.5); }
             50% { opacity: 1; transform: scale(1.2); }
         }
-
-        .container, .card, .final-card {
-    max-width: 90vw;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-sizing: border-box;
-}
-
-@media (max-width: 400px) {
-    .container, .card, .final-card {
-        font-size: 14px;
-    }
-    .character {
-        width: 80px;
-    }
-}
-
-/* Stylish scrollbar */
-.container, .card, .final-card {
-        max-width: 90vw;
-        max-height: 90vh;
-        overflow-y: auto;
-        box-sizing: border-box;
-        scrollbar-width: thin;
-        scrollbar-color: #ff69b4 #fff5f8;
-    }
-
-    /* Webkit scrollbar styles (Chrome, Safari, Edge) */
-    .container::-webkit-scrollbar,
-    .card::-webkit-scrollbar,
-    .final-card::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    .container::-webkit-scrollbar-track,
-    .card::-webkit-scrollbar-track,
-    .final-card::-webkit-scrollbar-track {
-        background: #fff5f8;
-        border-radius: 10px;
-    }
-
-    .container::-webkit-scrollbar-thumb,
-    .card::-webkit-scrollbar-thumb,
-    .final-card::-webkit-scrollbar-thumb {
-        background-color: #ff69b4;
-        border-radius: 10px;
-        border: 2px solid #fff5f8;
-    }
-
-    .container::-webkit-scrollbar-thumb:hover,
-    .card::-webkit-scrollbar-thumb:hover,
-    .final-card::-webkit-scrollbar-thumb:hover {
-        background-color: #ff1493;
-    }
-
-    @media (max-width: 400px) {
-        .container, .card, .final-card {
-            font-size: 14px;
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
         }
-        .character {
-            width: 80px;
-        }
-    }
-
-
     </style>
+    
 </head>
 <body>
-    <img src="https://clipart-library.com/images/8TEbjjGpc.png" alt="Balloon" class="balloon">
-    <img src="https://clipart-library.com/images/8TEbjjGpc.png" alt="Balloon" class="balloon">
-    <img src="https://clipart-library.com/images/8TEbjjGpc.png" alt="Balloon" class="balloon">
-    <img src="https://clipart-library.com/images/8TEbjjGpc.png" alt="Balloon" class="balloon">
+    <img src="baloon.png" alt="Balloon" class="balloon">
+    <img src="baloon.png" alt="Balloon" class="balloon">
+    <img src="baloon.png" alt="Balloon" class="balloon">
+    <img src="baloon.png" alt="Balloon" class="balloon">
 
-    <img src="https://www.freepnglogos.com/uploads/sparkle-png/sparkle-png-transparent-images-png-only-25.png" alt="Sparkle" class="sparkle">
-    <img src="https://www.freepnglogos.com/uploads/sparkle-png/sparkle-png-transparent-images-png-only-25.png" alt="Sparkle" class="sparkle">
-    <img src="https://www.freepnglogos.com/uploads/sparkle-png/sparkle-png-transparent-images-png-only-25.png" alt="Sparkle" class="sparkle">
-    <img src="https://www.freepnglogos.com/uploads/sparkle-png/sparkle-png-transparent-images-png-only-25.png" alt="Sparkle" class="sparkle">
+    <img src="https://static.vecteezy.com/system/resources/previews/024/045/550/original/sparkle-stickers-graphic-clipart-design-free-png.png" alt="Sparkle" class="sparkle">
+    <img src="https://static.vecteezy.com/system/resources/previews/024/045/550/original/sparkle-stickers-graphic-clipart-design-free-png.png" alt="Sparkle" class="sparkle">
+    <img src="https://static.vecteezy.com/system/resources/previews/024/045/550/original/sparkle-stickers-graphic-clipart-design-free-png.png" alt="Sparkle" class="sparkle">
+    <img src="https://static.vecteezy.com/system/resources/previews/024/045/550/original/sparkle-stickers-graphic-clipart-design-free-png.png" alt="Sparkle" class="sparkle">
 
     <div id="clickArea">Click here for a surprise! 🎉</div>
     <div class="loading">Preparing something special... 🌈</div>
@@ -269,6 +302,7 @@
         <button class="yes" onclick="handleYes()">Yes 😊</button>
         <button class="no" onclick="handleNo()">No 😔</button>
     </div>
+    
 
     <div id="finalCard" class="final-card">
         <p>Thank you for forgiving me! 🌟</p>
@@ -287,13 +321,15 @@
         const noButton = document.querySelector('.card button.no');
         let lastCardPosition = { left: 0, top: 0 };
     
+        console.log("Initial card display:", card.style.display);
+    
         document.getElementById('clickArea').addEventListener('click', function() {
             clickCount++;
             if (clickCount < requiredClicks) {
                 const randomIndex = Math.floor(Math.random() * encouragingPhrases.length);
                 this.innerText = encouragingPhrases[randomIndex];
-                this.style.transform = `scale(1.1) rotate(${Math.random() * 10 - 5}deg)`;
-                setTimeout(() => this.style.transform = 'scale(1) rotate(0deg)', 300);
+                this.style.transform = `translate(-50%, -50%) scale(1.1) rotate(${Math.random() * 10 - 5}deg)`;
+                setTimeout(() => this.style.transform = 'translate(-50%, -50%) scale(1) rotate(0deg)', 300);
             } else {
                 this.style.display = 'none';
                 document.querySelector('.loading').style.display = 'block';
@@ -305,11 +341,14 @@
         });
     
         talkButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            card.classList.add('show');
-            positionCard();
-        });
-    
+    e.preventDefault();
+    console.log("Talk button clicked");
+    card.style.display = 'block';
+    positionCard();
+    console.log("Card display after click:", card.style.display);
+    console.log("Card position:", card.style.left, card.style.top);
+});
+
         function handleYes() {
             card.style.display = 'none';
             finalCard.style.left = `${lastCardPosition.left}px`;
@@ -335,16 +374,18 @@
         noButton.addEventListener('mouseover', moveCard);
     
         function positionCard() {
-            const maxWidth = window.innerWidth - card.offsetWidth;
-            const maxHeight = window.innerHeight - card.offsetHeight;
-            lastCardPosition.left = Math.max(0, Math.min((window.innerWidth - card.offsetWidth) / 2, maxWidth));
-            lastCardPosition.top = Math.max(0, Math.min((window.innerHeight - card.offsetHeight) / 2, maxHeight));
-            card.style.left = `${lastCardPosition.left}px`;
-            card.style.top = `${lastCardPosition.top}px`;
-        }
+    const maxWidth = window.innerWidth - card.offsetWidth;
+    const maxHeight = window.innerHeight - card.offsetHeight;
+    lastCardPosition.left = Math.max(0, Math.min((window.innerWidth - card.offsetWidth) / 2, maxWidth));
+    lastCardPosition.top = Math.max(0, Math.min((window.innerHeight - card.offsetHeight) / 2, maxHeight));
+    card.style.left = `${lastCardPosition.left}px`;
+    card.style.top = `${lastCardPosition.top}px`;
+    card.style.transform = 'translate(-50%, -50%)'; // Center the card
+}
+
     
         function redirectToWhatsapp() {
-            window.location.href = 'https://wa.me/628117753340';
+        window.location.href = 'https://wa.me/628117753340?text=Sayang%2C%20aku%20sudah%20tidak%20marah%20lagi%2C%20ayo%20kita%20ngobrol';
         }
     
         function confetti() {
@@ -360,12 +401,16 @@
             }
         }
     
-        // Ensure card stays within viewport on window resize
         window.addEventListener('resize', positionCard);
-    
-        // Initial positioning
         positionCard();
+    
+        console.log("Script loaded");
+
+        talkButton.addEventListener('click', (e) => e.preventDefault());
+
     </script>
+    
+    
     
 </body>
 </html>
