@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maaf, Cantikku!</title>
+    <title>I'm Sorry, Love!</title>
     <style>
         body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -20,35 +20,33 @@
             background-color: #fff;
             border-radius: 10px;
             padding: 10px;
-            max-width: 250px; /* Adjusted size for less cropping */
+            max-width: 300px; /* Adjusted size */
             margin: 20px auto;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             border: 1px solid #ff69b4;
-            position: absolute; /* Positioning for proper centering */
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%); /* Center the card */
+            position: relative; /* For decorative elements positioning */
             animation: bounceIn 1s ease-out;
         }
         h1 {
             color: #ff69b4;
-            font-size: 1.2em; /* Adjusted size */
+            font-size: 1.5em; /* Adjusted size */
             animation: glow 1.5s infinite alternate;
         }
         p {
-            font-size: 12px; /* Adjusted size */
-            line-height: 1.3;
-            margin: 8px 0;
+            font-size: 14px; /* Adjusted size */
+            line-height: 1.4;
+            margin: 10px 0;
+            animation: fadeIn 2s ease-in-out;
         }
         .heart {
             color: #ff1493;
-            font-size: 2em; /* Adjusted size */
+            font-size: 3em; /* Adjusted size */
             margin: 10px 0;
             animation: heartbeat 1.5s infinite;
         }
         .button, #clickArea {
             display: inline-block;
-            padding: 8px 16px;
+            padding: 8px 16px; /* Adjusted padding */
             font-size: 14px; /* Adjusted size */
             color: #fff;
             background-color: #ff69b4;
@@ -64,8 +62,8 @@
             transform: scale(1.1);
         }
         .character {
-            width: 60px; /* Adjust size as needed */
-            margin: 8px;
+            width: 80px; /* Adjusted size */
+            margin: 10px;
             animation: bounce 2s infinite;
         }
         .goma {
@@ -76,8 +74,8 @@
         }
         .loading {
             display: none; /* Hidden initially */
-            font-size: 1.2em;
-            margin-top: 20px;
+            font-size: 1.2em; /* Adjusted size */
+            margin-top: 10px;
         }
 
         /* Animations */
@@ -97,6 +95,14 @@
             }
             to {
                 text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4, 0 0 50px #ff69b4;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
             }
         }
         @keyframes heartbeat {
@@ -129,6 +135,66 @@
                 transform: rotate(360deg);
             }
         }
+
+        /* Interactive card styles */
+        .card {
+            display: none;
+            position: absolute;
+            width: 200px; /* Adjusted size */
+            padding: 10px;
+            border: 1px solid #ff69b4; /* Same border color as the container */
+            border-radius: 10px; /* Same border radius as the container */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Same box shadow as the container */
+            background-color: #fff; /* Same background color as the container */
+            text-align: center;
+            transition: transform 0.5s;
+            cursor: pointer;
+        }
+        .card.show {
+            display: block;
+        }
+        .card button {
+            margin: 5px;
+            padding: 5px 10px; /* Adjusted padding */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px; /* Adjusted size */
+        }
+        .card button.yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .card button.no {
+            background-color: #f44336;
+            color: white;
+        }
+
+        /* Final card styles */
+        .final-card {
+            display: none;
+            position: absolute;
+            width: 200px; /* Adjusted size */
+            padding: 10px;
+            border: 1px solid #ff69b4; /* Same border color as the container */
+            border-radius: 10px; /* Same border radius as the container */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Same box shadow as the container */
+            background-color: #fff; /* Same background color as the container */
+            text-align: center;
+        }
+        .final-card button {
+            margin: 5px;
+            padding: 5px 10px; /* Adjusted padding */
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 12px; /* Adjusted size */
+        }
+        .final-card button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -138,97 +204,131 @@
 
     <!-- The hidden apology message container -->
     <div class="container">
-        <h1>Maaf, Cantikku! 🌟</h1>
+        <h1>Oops! I'm Sorry!</h1>
         <div class="heart">❤️</div>
         <!-- Character images -->
         <img src="https://pbs.twimg.com/tweet_video_thumb/GC1yyV0W0AAsuoI.jpg" alt="Goma Character" class="character goma">
         <img src="https://i.pinimg.com/originals/cf/2e/d9/cf2ed95560938ae1c2c291893c47e5c0.gif" alt="Peach Character" class="character peach">
-        <p>Hey [Nama Kamu],</p>
-        <p>Maaf kalau aku bikin kamu kecewa. Rasanya nggak lengkap tanpa senyummu. ✨</p>
-        <p>Ayo kita bicarakan ini dan bikin semuanya lebih baik. 🌈</p>
-        <p>Kamu luar biasa buatku. Semoga kita bisa kembali ke momen-momen seru kita.</p>
-        <a href="#" class="button" id="talkButton">Let's Talk</a>
+        <p>Hi [Her Name],</p>
+        <p>Sorry for the misunderstanding. I miss our smiles and want to make things right.</p>
+        <p>You mean so much to me. Can we talk and make up? I promise to make things better!</p>
+        <p>Love, [Your Name]</p>
+        <a href="#" id="talkButton" class="button">Let's Talk</a>
     </div>
 
     <!-- Interactive card -->
-    <div class="container" id="card">
+    <div id="card" class="card">
         <p>Do you forgive me?</p>
-        <button class="button" id="yesButton">Yes</button>
-        <button class="button" id="noButton">No</button>
+        <button class="yes" onclick="handleYes()">Yes</button>
+        <button class="no" onclick="handleNo()">No</button>
     </div>
 
     <!-- Final card -->
-    <div class="container" id="finalCard">
-        <p>Thank you for forgiving me! 😘</p>
-        <button class="button" id="whatsappButton">Chat on WhatsApp</button>
+    <div id="finalCard" class="final-card">
+        <p>Thank you for forgiving me!</p>
+        <button onclick="redirectToWhatsapp()">Chat on WhatsApp</button>
     </div>
 
     <script>
         let clickCount = 0; // Track the number of clicks
-        const requiredClicks = 5; // Number of clicks needed to reveal the message
-        const encouragingPhrases = [
-            "Almost there!",
-            "Keep going!",
-            "You can do it!",
-            "Just a few more!",
-            "So close!"
-        ];
+const requiredClicks = 5; // Number of clicks needed to reveal the message
+const encouragingPhrases = [
+    "Almost there!",
+    "Keep going!",
+    "You can do it!",
+    "Just a few more!",
+    "So close!"
+];
+const card = document.getElementById('card');
+const finalCard = document.getElementById('finalCard');
+const talkButton = document.getElementById('talkButton');
+const noButton = document.querySelector('.card button.no'); // Reference to "No" button
+let lastCardPosition = { left: 0, top: 0 }; // Store last card position
 
-        const clickArea = document.getElementById('clickArea');
-        const loading = document.querySelector('.loading');
-        const container = document.querySelector('.container');
-        const talkButton = document.getElementById('talkButton');
-        const card = document.getElementById('card');
-        const finalCard = document.getElementById('finalCard');
-        const yesButton = document.getElementById('yesButton');
-        const noButton = document.getElementById('noButton');
-        const whatsappButton = document.getElementById('whatsappButton');
+document.getElementById('clickArea').addEventListener('click', function() {
+    clickCount++;
+    if (clickCount < requiredClicks) {
+        // Display a random encouraging phrase
+        const randomIndex = Math.floor(Math.random() * encouragingPhrases.length);
+        this.innerText = encouragingPhrases[randomIndex];
+    } else {
+        // Hide the click area and show the loading animation
+        this.style.display = 'none';
+        document.querySelector('.loading').style.display = 'block';
 
-        let lastCardPosition = { left: 0, top: 0 };
+        // Simulate loading time
+        setTimeout(function() {
+            document.querySelector('.loading').style.display = 'none'; // Hide loading
+            document.querySelector('.container').style.display = 'block'; // Show the apology message
+        }, 2000);
+    }
+});
 
-        clickArea.addEventListener('click', function() {
-            clickCount++;
-            if (clickCount < requiredClicks) {
-                // Display a random encouraging phrase
-                const randomIndex = Math.floor(Math.random() * encouragingPhrases.length);
-                this.innerText = encouragingPhrases[randomIndex];
-            } else {
-                // Hide the click area and show the loading animation
-                this.style.display = 'none';
-                loading.style.display = 'block';
+talkButton.addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent default link action
+    card.classList.add('show'); // Show the interactive card
+});
 
-                // Simulate loading time
-                setTimeout(function() {
-                    loading.style.display = 'none'; // Hide loading
-                    container.style.display = 'block'; // Show the apology message
-                }, 2000);
-            }
-        });
+// Handle 'Yes' button click
+function handleYes() {
+    // Hide the card
+    card.style.display = 'none';
 
-        talkButton.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default link action
-            card.style.display = 'block'; // Show the interactive card
-        });
+    // Set the final card to the same position as the last card
+    finalCard.style.left = `${lastCardPosition.left}px`;
+    finalCard.style.top = `${lastCardPosition.top}px`;
+    finalCard.style.display = 'block'; // Show the final card
 
-        yesButton.addEventListener('click', function() {
-            // Hide the interactive card
-            card.style.display = 'none';
-            finalCard.style.left = `${lastCardPosition.left}px`;
-            finalCard.style.top = `${lastCardPosition.top}px`;
-            finalCard.style.display = 'block'; // Show the final card
-        });
+    console.log(`Final card position: left=${lastCardPosition.left}, top=${lastCardPosition.top}`);
+}
 
-        noButton.addEventListener('mouseover', function() {
-            // Move card to a random position
-            lastCardPosition.left = Math.random() * (window.innerWidth - card.offsetWidth - 20);
-            lastCardPosition.top = Math.random() * (window.innerHeight - card.offsetHeight - 20);
-            card.style.left = `${lastCardPosition.left}px`;
-            card.style.top = `${lastCardPosition.top}px`;
-        });
+// Handle 'No' button click
+function handleNo() {
+    // Move card to a random position
+    lastCardPosition.left = Math.random() * (window.innerWidth - card.offsetWidth - 20);
+    lastCardPosition.top = Math.random() * (window.innerHeight - card.offsetHeight - 20);
+    card.style.left = `${lastCardPosition.left}px`;
+    card.style.top = `${lastCardPosition.top}px`;
+    card.style.display = 'block'; // Ensure the card is visible before positioning
 
-        whatsappButton.addEventListener('click', function() {
-            window.location.href = 'https://wa.me/YourPhoneNumber'; // Replace with your WhatsApp number
-        });
+    console.log(`Card moved to: left=${lastCardPosition.left}, top=${lastCardPosition.top}`);
+}
+
+// Make the card move away from the "No" button
+noButton.addEventListener('mouseover', function() {
+    // Calculate a new position to move the card
+    let newLeft = Math.random() * (window.innerWidth - card.offsetWidth - 20);
+    let newTop = Math.random() * (window.innerHeight - card.offsetHeight - 20);
+
+    // Ensure the new position is within the viewport
+    if (newLeft < 0) newLeft = 0;
+    if (newTop < 0) newTop = 0;
+    if (newLeft + card.offsetWidth > window.innerWidth) newLeft = window.innerWidth - card.offsetWidth;
+    if (newTop + card.offsetHeight > window.innerHeight) newTop = window.innerHeight - card.offsetHeight;
+
+    card.style.left = `${newLeft}px`;
+    card.style.top = `${newTop}px`;
+
+    // Update last card position to ensure it's correct
+    lastCardPosition.left = newLeft;
+    lastCardPosition.top = newTop;
+
+    console.log(`Card moved to: left=${newLeft}, top=${newTop}`);
+});
+
+// Position the card initially
+function positionCard() {
+    card.style.left = `${lastCardPosition.left}px`;
+    card.style.top = `${lastCardPosition.top}px`;
+}
+
+// Ensure the card is initially positioned
+positionCard();
+
+function redirectToWhatsapp() {
+    window.location.href = 'https://wa.me/yourwhatsappnumber'; // Replace with your WhatsApp number
+}
+
     </script>
 </body>
 </html>
