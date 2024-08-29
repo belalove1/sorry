@@ -26,6 +26,7 @@
             background-color: #fff5f8;
             border-radius: 20px;
             padding: 20px;
+            width: 90%;
             max-width: 320px;
             margin: 20px auto;
             box-shadow: 0 4px 8px rgba(255,105,180,0.3);
@@ -33,7 +34,7 @@
             position: relative;
             animation: bounceIn 1s ease-out;
             z-index: 5;
-            max-height: 90vh;
+            max-height: 80vh;
             overflow-y: auto;
             box-sizing: border-box;
             scrollbar-width: thin;
@@ -75,7 +76,7 @@
             transform: scale(1.1) rotate(3deg);
         }
         .character {
-            width: 100px;
+            width: 80px;
             margin: 15px;
             animation: bounce 2s infinite;
         }
@@ -92,25 +93,25 @@
             color: #ff69b4;
         }
         .card, .final-card {
-    display: none;
-    position: fixed; /* Change from absolute to fixed */
-    width: 200px;
-    padding: 10px;
-    background-color: #fff5f8;
-    border: 2px solid #ff69b4;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(255,105,180,0.3);
-    text-align: center;
-    transition: transform 0.5s;
-    cursor: pointer;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-sizing: border-box;
-    scrollbar-width: thin;
-    scrollbar-color: #ff69b4 #fff5f8;
-    z-index: 1000; /* Add this line to ensure it's above other elements */
-}
-
+            display: none;
+            position: fixed;
+            width: 80%;
+            max-width: 200px;
+            padding: 10px;
+            background-color: #fff5f8;
+            border: 2px solid #ff69b4;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(255,105,180,0.3);
+            text-align: center;
+            transition: transform 0.5s;
+            cursor: pointer;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: #ff69b4 #fff5f8;
+            z-index: 1000;
+        }
         .card.show {
             display: block;
         }
@@ -137,7 +138,7 @@
         }
         .balloon {
             position: absolute;
-            width: 100px;
+            width: 60px;
             animation: float 5s infinite ease-in-out;
         }
         .balloon:nth-child(1) { left: 10%; top: 10%; animation-delay: 0s; }
@@ -146,7 +147,7 @@
         .balloon:nth-child(4) { right: 20%; bottom: 25%; animation-delay: 3s; }
         .sparkle {
             position: absolute;
-            width: 20px;
+            width: 15px;
             animation: sparkle 2s infinite;
         }
         .sparkle:nth-child(1) { left: 5%; top: 5%; animation-delay: 0s; }
@@ -223,7 +224,7 @@
                 font-size: 14px;
             }
             .character {
-                width: 80px;
+                width: 60px;
             }
         }
         
@@ -267,20 +268,17 @@
             }
         }
 
-        
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.5em;
-        text-shadow: 0 0 2px #ff69b4, 0 0 3px #ff69b4, 0 0 4px #ff69b4, 0 0 5px #ff69b4;
-    }
-    @keyframes glow {
-        from { text-shadow: 0 0 2px #ff69b4, 0 0 4px #ff69b4, 0 0 6px #ff69b4, 0 0 8px #ff69b4; }
-        to { text-shadow: 0 0 4px #ff69b4, 0 0 6px #ff69b4, 0 0 8px #ff69b4, 0 0 10px #ff69b4; }
-    }
-}
-        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;
+                text-shadow: 0 0 2px #ff69b4, 0 0 3px #ff69b4, 0 0 4px #ff69b4, 0 0 5px #ff69b4;
+            }
+            @keyframes glow {
+                from { text-shadow: 0 0 2px #ff69b4, 0 0 4px #ff69b4, 0 0 6px #ff69b4, 0 0 8px #ff69b4; }
+                to { text-shadow: 0 0 4px #ff69b4, 0 0 6px #ff69b4, 0 0 8px #ff69b4, 0 0 10px #ff69b4; }
+            }
+        }
     </style>
-    
 </head>
 <body>
     <img src="baloon.png" alt="Balloon" class="balloon">
@@ -315,7 +313,6 @@
         <button class="yes" onclick="handleYes()">Yes 😊</button>
         <button class="no" onclick="handleNo()">No 😔</button>
     </div>
-    
 
     <div id="finalCard" class="final-card">
         <p>Thank you for forgiving me! 🌟</p>
@@ -333,9 +330,8 @@
         const talkButton = document.getElementById('talkButton');
         const noButton = document.querySelector('.card button.no');
         let lastCardPosition = { left: 0, top: 0 };
-    
         console.log("Initial card display:", card.style.display);
-    
+
         document.getElementById('clickArea').addEventListener('click', function() {
             clickCount++;
             if (clickCount < requiredClicks) {
@@ -352,15 +348,15 @@
                 }, 2000);
             }
         });
-    
+
         talkButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    console.log("Talk button clicked");
-    card.style.display = 'block';
-    positionCard();
-    console.log("Card display after click:", card.style.display);
-    console.log("Card position:", card.style.left, card.style.top);
-});
+            e.preventDefault();
+            console.log("Talk button clicked");
+            card.style.display = 'block';
+            positionCard();
+            console.log("Card display after click:", card.style.display);
+            console.log("Card position:", card.style.left, card.style.top);
+        });
 
         function handleYes() {
             card.style.display = 'none';
@@ -369,11 +365,11 @@
             finalCard.style.display = 'block';
             confetti();
         }
-    
+
         function handleNo() {
             moveCard();
         }
-    
+
         function moveCard() {
             const maxWidth = window.innerWidth - card.offsetWidth;
             const maxHeight = window.innerHeight - card.offsetHeight;
@@ -383,24 +379,23 @@
             card.style.top = `${lastCardPosition.top}px`;
             card.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
         }
-    
-        noButton.addEventListener('mouseover', moveCard);
-    
-        function positionCard() {
-    const maxWidth = window.innerWidth - card.offsetWidth;
-    const maxHeight = window.innerHeight - card.offsetHeight;
-    lastCardPosition.left = Math.max(0, Math.min((window.innerWidth - card.offsetWidth) / 2, maxWidth));
-    lastCardPosition.top = Math.max(0, Math.min((window.innerHeight - card.offsetHeight) / 2, maxHeight));
-    card.style.left = `${lastCardPosition.left}px`;
-    card.style.top = `${lastCardPosition.top}px`;
-    card.style.transform = 'translate(-50%, -50%)'; // Center the card
-}
 
-    
-        function redirectToWhatsapp() {
-        window.location.href = 'https://wa.me/628117753340?text=Sayang%2C%20aku%20sudah%20tidak%20marah%20lagi%2C%20ayo%20kita%20ngobrol';
+        noButton.addEventListener('mouseover', moveCard);
+
+        function positionCard() {
+            const maxWidth = window.innerWidth - card.offsetWidth;
+            const maxHeight = window.innerHeight - card.offsetHeight;
+            lastCardPosition.left = Math.max(0, Math.min((window.innerWidth - card.offsetWidth) / 2, maxWidth));
+            lastCardPosition.top = Math.max(0, Math.min((window.innerHeight - card.offsetHeight) / 2, maxHeight));
+            card.style.left = `${lastCardPosition.left}px`;
+            card.style.top = `${lastCardPosition.top}px`;
+            card.style.transform = 'translate(-50%, -50%)'; // Center the card
         }
-    
+
+        function redirectToWhatsapp() {
+            window.location.href = 'https://wa.me/628117753340?text=Sayang%2C%20aku%20sudah%20tidak%20marah%20lagi%2C%20ayo%20kita%20ngobrol';
+        }
+
         function confetti() {
             for (let i = 0; i < 100; i++) {
                 const confetti = document.createElement('div');
@@ -413,17 +408,13 @@
                 setTimeout(() => confetti.remove(), 5000);
             }
         }
-    
+
         window.addEventListener('resize', positionCard);
         positionCard();
-    
+
         console.log("Script loaded");
 
         talkButton.addEventListener('click', (e) => e.preventDefault());
-
     </script>
-    
-    
-    
 </body>
 </html>
