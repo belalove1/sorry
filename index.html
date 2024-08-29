@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry, Love!</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffe4e1;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            overflow: auto;
+            position: relative;
+        }
+        .container {
+            display: none; /* Initially hidden */
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 2px solid #ff69b4;
+            position: relative; /* For decorative elements positioning */
+            animation: bounceIn 1s ease-out;
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            animation: glow 1.5s infinite alternate;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 15px 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .heart {
+            color: #ff1493;
+            font-size: 4em;
+            margin: 20px 0;
+            animation: heartbeat 1.5s infinite;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #ff69b4;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .button:hover {
+            background-color: #ff1493;
+            transform: scale(1.1);
+        }
+        .character {
+            width: 100px; /* Adjust size as needed */
+            margin: 20px;
+            animation: bounce 2s infinite;
+        }
+        .goma {
+            animation: rotate 3s infinite linear;
+        }
+        .peach {
+            animation: bounce 3s infinite;
+        }
+        #showMessageButton {
+            display: block;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #ff69b4;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            margin: 50px auto;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        #showMessageButton:hover {
+            background-color: #ff1493;
+            transform: scale(1.1);
+        }
+
+        /* Decorations */
+        .decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .decorations img {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            animation: float 10s infinite;
+        }
+        .decorations img:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 8s;
+            animation-delay: 0s;
+        }
+        .decorations img:nth-child(2) {
+            top: 30%;
+            left: 50%;
+            animation-duration: 12s;
+            animation-delay: 2s;
+        }
+        .decorations img:nth-child(3) {
+            top: 50%;
+            left: 30%;
+            animation-duration: 15s;
+            animation-delay: 4s;
+        }
+        .decorations img:nth-child(4) {
+            top: 70%;
+            left: 70%;
+            animation-duration: 10s;
+            animation-delay: 6s;
+        }
+        .decorations img:nth-child(5) {
+            top: 20%;
+            left: 80%;
+            animation-duration: 14s;
+            animation-delay: 1s;
+        }
+
+        /* Animations */
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4;
+            }
+            to {
+                text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4, 0 0 50px #ff69b4;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="showMessageButton">Show Apology Message</button>
+    <div class="container">
+        <h1>Oops! I'm Sorry!</h1>
+        <div class="heart">❤️</div>
+        <!-- Updated image URLs -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Heart_corazon.svg/1024px-Heart_corazon.svg.png" alt="Goma Character" class="character goma">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon-72a7cf.svg/1024px-Star_icon-72a7cf.svg.png" alt="Peach Character" class="character peach">
+        <p>Hi [Her Name],</p>
+        <p>I’m really sorry for the misunderstanding. I miss our laughs and smiles and want to make things right.</p>
+        <p>You mean so much to me, and I can't stand the thought of us being upset. Can we talk and make up? I promise to make things better!</p>
+        <p>Love, [Your Name]</p>
+        <a href="mailto:[Her Email]" class="button">Let's Talk</a>
+        <!-- Decorations around the message -->
+        <div class="decorations">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Small_Flowers.svg/1024px-Small_Flowers.svg.png" alt="Flower Decoration">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Smiley_face_emoji.png/1024px-Smiley_face_emoji.png" alt="Smiley Decoration">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Blue_heart.svg/1024px-Blue_heart.svg.png" alt="Heart Decoration">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Green_heart.svg/1024px-Green_heart.svg.png" alt="Heart Decoration">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flower_icon.svg/1024px-Flower_icon.svg.png" alt="Flower Decoration">
+        </div>
+    </div>
+    <script>
+        document.getElementById('showMessageButton').addEventListener('click', function() {
+            document.querySelector('.container').style.display = 'block';
+            this.style.display = 'none'; // Hide the button after showing the message
+        });
+    </script>
+</body>
+</html>
