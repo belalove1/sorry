@@ -4,148 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Untuk Viona!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background-color: #ffe4e1;
+            font-family: 'Bubblegum Sans', cursive;
+            background-color: #fce4ec;
             color: #333;
             text-align: center;
             padding: 20px;
             margin: 0;
-            overflow: hidden; /* Prevent scrolling */
+            overflow: hidden;
             position: relative;
         }
         .container {
-            display: none; /* Initially hidden */
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 10px;
-            max-width: 300px; /* Adjusted size */
+            display: none;
+            background-color: #fff5f8;
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 320px;
             margin: 20px auto;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            border: 1px solid #ff69b4;
-            position: relative; /* For decorative elements positioning */
+            box-shadow: 0 4px 8px rgba(255,105,180,0.3);
+            border: 2px solid #ff69b4;
+            position: relative;
             animation: bounceIn 1s ease-out;
         }
         h1 {
             color: #ff69b4;
-            font-size: 1.5em; /* Adjusted size */
+            font-size: 1.8em;
             animation: glow 1.5s infinite alternate;
         }
         p {
-            font-size: 14px; /* Adjusted size */
-            line-height: 1.4;
-            margin: 10px 0;
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 12px 0;
             animation: fadeIn 2s ease-in-out;
         }
         .heart {
             color: #ff1493;
-            font-size: 3em; /* Adjusted size */
-            margin: 10px 0;
+            font-size: 3.5em;
+            margin: 15px 0;
             animation: heartbeat 1.5s infinite;
         }
         .button, #clickArea {
             display: inline-block;
-            padding: 8px 16px; /* Adjusted padding */
-            font-size: 14px; /* Adjusted size */
+            padding: 10px 20px;
+            font-size: 16px;
             color: #fff;
             background-color: #ff69b4;
             border: none;
-            border-radius: 8px;
+            border-radius: 25px;
             text-decoration: none;
-            margin-top: 10px;
-            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 15px;
+            transition: all 0.3s;
             cursor: pointer;
+            box-shadow: 0 2px 4px rgba(255,105,180,0.5);
         }
         .button:hover, #clickArea:hover {
             background-color: #ff1493;
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(3deg);
         }
         .character {
-            width: 80px; /* Adjusted size */
-            margin: 10px;
+            width: 100px;
+            margin: 15px;
             animation: bounce 2s infinite;
         }
         .goma {
-            animation: rotate 3s infinite linear;
+            animation: rotate 5s infinite linear;
         }
         .peach {
-            animation: bounce 3s infinite;
+            animation: bounce 4s infinite;
         }
         .loading {
-            display: none; /* Hidden initially */
-            font-size: 1.2em; /* Adjusted size */
-            margin-top: 10px;
+            display: none;
+            font-size: 1.4em;
+            margin-top: 15px;
+            color: #ff69b4;
         }
-
-        /* Animations */
-        @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4;
-            }
-            to {
-                text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4, 0 0 50px #ff69b4;
-            }
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        @keyframes heartbeat {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-20px);
-            }
-            60% {
-                transform: translateY(-10px);
-            }
-        }
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Interactive card styles */
-        .card {
+        .card, .final-card {
             display: none;
             position: absolute;
-            width: 200px; /* Adjusted size */
+            width: 200px;
             padding: 10px;
-            border: 1px solid #ff69b4; /* Same border color as the container */
-            border-radius: 10px; /* Same border radius as the container */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Same box shadow as the container */
-            background-color: #fff; /* Same background color as the container */
+            background-color: #fff5f8;
+            border: 2px solid #ff69b4;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(255,105,180,0.3);
             text-align: center;
             transition: transform 0.5s;
             cursor: pointer;
@@ -153,13 +96,18 @@
         .card.show {
             display: block;
         }
-        .card button {
+        .card button, .final-card button {
             margin: 5px;
-            padding: 5px 10px; /* Adjusted padding */
+            padding: 5px 10px;
             border: none;
-            border-radius: 5px;
+            border-radius: 20px;
             cursor: pointer;
-            font-size: 12px; /* Adjusted size */
+            font-size: 14px;
+            font-family: 'Bubblegum Sans', cursive;
+            transition: all 0.3s;
+        }
+        .card button:hover, .final-card button:hover {
+            transform: scale(1.1) rotate(3deg);
         }
         .card button.yes {
             background-color: #4CAF50;
@@ -169,168 +117,255 @@
             background-color: #f44336;
             color: white;
         }
-
-        /* Final card styles */
-        .final-card {
-            display: none;
+        .balloon {
             position: absolute;
-            width: 200px; /* Adjusted size */
-            padding: 10px;
-            border: 1px solid #ff69b4; /* Same border color as the container */
-            border-radius: 10px; /* Same border radius as the container */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Same box shadow as the container */
-            background-color: #fff; /* Same background color as the container */
-            text-align: center;
+            width: 40px;
+            animation: float 5s infinite ease-in-out;
         }
-        .final-card button {
-            margin: 5px;
-            padding: 5px 10px; /* Adjusted padding */
-            border: none;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            font-size: 12px; /* Adjusted size */
+        .balloon:nth-child(1) { left: 10%; top: 10%; animation-delay: 0s; }
+        .balloon:nth-child(2) { right: 10%; top: 15%; animation-delay: 1s; }
+        .balloon:nth-child(3) { left: 20%; bottom: 20%; animation-delay: 2s; }
+        .balloon:nth-child(4) { right: 20%; bottom: 25%; animation-delay: 3s; }
+        .sparkle {
+            position: absolute;
+            width: 20px;
+            animation: sparkle 2s infinite;
         }
-        .final-card button:hover {
-            background-color: #45a049;
+        .sparkle:nth-child(1) { left: 5%; top: 5%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { right: 5%; top: 10%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { left: 15%; bottom: 15%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { right: 15%; bottom: 20%; animation-delay: 1.5s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4, 0 0 15px #ff69b4, 0 0 20px #ff69b4; }
+            to { text-shadow: 0 0 10px #ff69b4, 0 0 15px #ff69b4, 0 0 20px #ff69b4, 0 0 25px #ff69b4; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .container, .card, .final-card {
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+@media (max-width: 400px) {
+    .container, .card, .final-card {
+        font-size: 14px;
+    }
+    .character {
+        width: 80px;
+    }
+}
+
+/* Stylish scrollbar */
+.container, .card, .final-card {
+        max-width: 90vw;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: #ff69b4 #fff5f8;
+    }
+
+    /* Webkit scrollbar styles (Chrome, Safari, Edge) */
+    .container::-webkit-scrollbar,
+    .card::-webkit-scrollbar,
+    .final-card::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .container::-webkit-scrollbar-track,
+    .card::-webkit-scrollbar-track,
+    .final-card::-webkit-scrollbar-track {
+        background: #fff5f8;
+        border-radius: 10px;
+    }
+
+    .container::-webkit-scrollbar-thumb,
+    .card::-webkit-scrollbar-thumb,
+    .final-card::-webkit-scrollbar-thumb {
+        background-color: #ff69b4;
+        border-radius: 10px;
+        border: 2px solid #fff5f8;
+    }
+
+    .container::-webkit-scrollbar-thumb:hover,
+    .card::-webkit-scrollbar-thumb:hover,
+    .final-card::-webkit-scrollbar-thumb:hover {
+        background-color: #ff1493;
+    }
+
+    @media (max-width: 400px) {
+        .container, .card, .final-card {
+            font-size: 14px;
+        }
+        .character {
+            width: 80px;
+        }
+    }
+
+
     </style>
 </head>
 <body>
-    <!-- Initial click area for interactivity -->
-    <div id="clickArea">Click here to unlock the message!</div>
-    <div class="loading">Loading your special message...</div>
+    <img src="https://clipart-library.com/images/8TEbjjGpc.png" alt="Balloon" class="balloon">
+    <img src="https://clipart-library.com/images/8TEbjjGpc.png" alt="Balloon" class="balloon">
+    <img src="https://clipart-library.com/images/8TEbjjGpc.png" alt="Balloon" class="balloon">
+    <img src="https://clipart-library.com/images/8TEbjjGpc.png" alt="Balloon" class="balloon">
 
-    <!-- The hidden apology message container -->
+    <img src="https://www.freepnglogos.com/uploads/sparkle-png/sparkle-png-transparent-images-png-only-25.png" alt="Sparkle" class="sparkle">
+    <img src="https://www.freepnglogos.com/uploads/sparkle-png/sparkle-png-transparent-images-png-only-25.png" alt="Sparkle" class="sparkle">
+    <img src="https://www.freepnglogos.com/uploads/sparkle-png/sparkle-png-transparent-images-png-only-25.png" alt="Sparkle" class="sparkle">
+    <img src="https://www.freepnglogos.com/uploads/sparkle-png/sparkle-png-transparent-images-png-only-25.png" alt="Sparkle" class="sparkle">
+
+    <div id="clickArea">Click here for a surprise! 🎉</div>
+    <div class="loading">Preparing something special... 🌈</div>
+
     <div class="container">
-        <h1>Oops! I'm Sorry!</h1>
+        <h1>Oops! I'm Sorry! 🥺</h1>
         <div class="heart">❤️</div>
-        <!-- Character images -->
         <img src="https://pbs.twimg.com/tweet_video_thumb/GC1yyV0W0AAsuoI.jpg" alt="Goma Character" class="character goma">
         <img src="https://i.pinimg.com/originals/cf/2e/d9/cf2ed95560938ae1c2c291893c47e5c0.gif" alt="Peach Character" class="character peach">
-        <p>Hi sayang,</p>
-        <p>Maaf kalau aku bikin kamu kecewa. aku minta maaf kalau aku salah lagi😥</p>
-        <p>Gabisa, sedih kl diem2an lama2. Terus kepikiran penasaran sm kegiatanmu.</p>
-        <p>Ayo kita ngobrol lagi?🥺🌈 ✨</p>
-        <p>Kamu luar biasa buatku. Semoga kita bisa kembali ke momen-momen seru kita.</p>
-        <p>Love you ❤</p>
-        <a href="#" id="talkButton" class="button">Let's Talk</a>
+        <p>Hi sayang, 🌸</p>
+        <p>Maaf kalau aku bikin kamu kecewa. Aku minta maaf kalau aku salah lagi 😥</p>
+        <p>Gabisa sedih kl diem2an lama2. Terus kepikiran penasaran sm kegiatanmu. 🌟</p>
+        <p>Ayo kita ngobrol lagi? 🥺🌈✨</p>
+        <p>Kamu luar biasa buatku. Semoga kita bisa kembali ke momen-momen seru kita. 🎈</p>
+        <p>Love you ❤️</p>
+        <a href="#" id="talkButton" class="button">Let's Talk 💖</a>
     </div>
 
-    <!-- Interactive card -->
     <div id="card" class="card">
-        <p>Do you forgive me?</p>
-        <button class="yes" onclick="handleYes()">Yes</button>
-        <button class="no" onclick="handleNo()">No</button>
+        <p>Do you forgive me? 🐰</p>
+        <button class="yes" onclick="handleYes()">Yes 😊</button>
+        <button class="no" onclick="handleNo()">No 😔</button>
     </div>
 
-    <!-- Final card -->
     <div id="finalCard" class="final-card">
-        <p>Thank you for forgiving me!</p>
-        <button onclick="redirectToWhatsapp()">Chat on WhatsApp</button>
+        <p>Thank you for forgiving me! 🌟</p>
+        <button onclick="redirectToWhatsapp()">Chat on WhatsApp 💬</button>
     </div>
 
     <script>
-        let clickCount = 0; // Track the number of clicks
-const requiredClicks = 5; // Number of clicks needed to reveal the message
-const encouragingPhrases = [
-    "Almost there!",
-    "Keep going!",
-    "You can do it!",
-    "Just a few more!",
-    "So close!"
-];
-const card = document.getElementById('card');
-const finalCard = document.getElementById('finalCard');
-const talkButton = document.getElementById('talkButton');
-const noButton = document.querySelector('.card button.no'); // Reference to "No" button
-let lastCardPosition = { left: 0, top: 0 }; // Store last card position
-
-document.getElementById('clickArea').addEventListener('click', function() {
-    clickCount++;
-    if (clickCount < requiredClicks) {
-        // Display a random encouraging phrase
-        const randomIndex = Math.floor(Math.random() * encouragingPhrases.length);
-        this.innerText = encouragingPhrases[randomIndex];
-    } else {
-        // Hide the click area and show the loading animation
-        this.style.display = 'none';
-        document.querySelector('.loading').style.display = 'block';
-
-        // Simulate loading time
-        setTimeout(function() {
-            document.querySelector('.loading').style.display = 'none'; // Hide loading
-            document.querySelector('.container').style.display = 'block'; // Show the apology message
-        }, 2000);
-    }
-});
-
-talkButton.addEventListener('click', function(e) {
-    e.preventDefault(); // Prevent default link action
-    card.classList.add('show'); // Show the interactive card
-});
-
-// Handle 'Yes' button click
-function handleYes() {
-    // Hide the card
-    card.style.display = 'none';
-
-    // Set the final card to the same position as the last card
-    finalCard.style.left = `${lastCardPosition.left}px`;
-    finalCard.style.top = `${lastCardPosition.top}px`;
-    finalCard.style.display = 'block'; // Show the final card
-
-    console.log(`Final card position: left=${lastCardPosition.left}, top=${lastCardPosition.top}`);
-}
-
-// Handle 'No' button click
-function handleNo() {
-    // Move card to a random position
-    lastCardPosition.left = Math.random() * (window.innerWidth - card.offsetWidth - 20);
-    lastCardPosition.top = Math.random() * (window.innerHeight - card.offsetHeight - 20);
-    card.style.left = `${lastCardPosition.left}px`;
-    card.style.top = `${lastCardPosition.top}px`;
-    card.style.display = 'block'; // Ensure the card is visible before positioning
-
-    console.log(`Card moved to: left=${lastCardPosition.left}, top=${lastCardPosition.top}`);
-}
-
-// Make the card move away from the "No" button
-noButton.addEventListener('mouseover', function() {
-    // Calculate a new position to move the card
-    let newLeft = Math.random() * (window.innerWidth - card.offsetWidth - 20);
-    let newTop = Math.random() * (window.innerHeight - card.offsetHeight - 20);
-
-    // Ensure the new position is within the viewport
-    if (newLeft < 0) newLeft = 0;
-    if (newTop < 0) newTop = 0;
-    if (newLeft + card.offsetWidth > window.innerWidth) newLeft = window.innerWidth - card.offsetWidth;
-    if (newTop + card.offsetHeight > window.innerHeight) newTop = window.innerHeight - card.offsetHeight;
-
-    card.style.left = `${newLeft}px`;
-    card.style.top = `${newTop}px`;
-
-    // Update last card position to ensure it's correct
-    lastCardPosition.left = newLeft;
-    lastCardPosition.top = newTop;
-
-    console.log(`Card moved to: left=${newLeft}, top=${newTop}`);
-});
-
-// Position the card initially
-function positionCard() {
-    card.style.left = `${lastCardPosition.left}px`;
-    card.style.top = `${lastCardPosition.top}px`;
-}
-
-// Ensure the card is initially positioned
-positionCard();
-
-function redirectToWhatsapp() {
-    window.location.href = 'https://wa.me/628117753340'; // Replace with your WhatsApp number
-}
-
+        let clickCount = 0;
+        const requiredClicks = 5;
+        const encouragingPhrases = [
+            "Almost there!", "Keep going!", "You can do it!", "Just a few more!", "So close!"
+        ];
+        const card = document.getElementById('card');
+        const finalCard = document.getElementById('finalCard');
+        const talkButton = document.getElementById('talkButton');
+        const noButton = document.querySelector('.card button.no');
+        let lastCardPosition = { left: 0, top: 0 };
+    
+        document.getElementById('clickArea').addEventListener('click', function() {
+            clickCount++;
+            if (clickCount < requiredClicks) {
+                const randomIndex = Math.floor(Math.random() * encouragingPhrases.length);
+                this.innerText = encouragingPhrases[randomIndex];
+                this.style.transform = `scale(1.1) rotate(${Math.random() * 10 - 5}deg)`;
+                setTimeout(() => this.style.transform = 'scale(1) rotate(0deg)', 300);
+            } else {
+                this.style.display = 'none';
+                document.querySelector('.loading').style.display = 'block';
+                setTimeout(function() {
+                    document.querySelector('.loading').style.display = 'none';
+                    document.querySelector('.container').style.display = 'block';
+                }, 2000);
+            }
+        });
+    
+        talkButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            card.classList.add('show');
+            positionCard();
+        });
+    
+        function handleYes() {
+            card.style.display = 'none';
+            finalCard.style.left = `${lastCardPosition.left}px`;
+            finalCard.style.top = `${lastCardPosition.top}px`;
+            finalCard.style.display = 'block';
+            confetti();
+        }
+    
+        function handleNo() {
+            moveCard();
+        }
+    
+        function moveCard() {
+            const maxWidth = window.innerWidth - card.offsetWidth;
+            const maxHeight = window.innerHeight - card.offsetHeight;
+            lastCardPosition.left = Math.max(0, Math.min(Math.random() * maxWidth, maxWidth));
+            lastCardPosition.top = Math.max(0, Math.min(Math.random() * maxHeight, maxHeight));
+            card.style.left = `${lastCardPosition.left}px`;
+            card.style.top = `${lastCardPosition.top}px`;
+            card.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
+        }
+    
+        noButton.addEventListener('mouseover', moveCard);
+    
+        function positionCard() {
+            const maxWidth = window.innerWidth - card.offsetWidth;
+            const maxHeight = window.innerHeight - card.offsetHeight;
+            lastCardPosition.left = Math.max(0, Math.min((window.innerWidth - card.offsetWidth) / 2, maxWidth));
+            lastCardPosition.top = Math.max(0, Math.min((window.innerHeight - card.offsetHeight) / 2, maxHeight));
+            card.style.left = `${lastCardPosition.left}px`;
+            card.style.top = `${lastCardPosition.top}px`;
+        }
+    
+        function redirectToWhatsapp() {
+            window.location.href = 'https://wa.me/628117753340';
+        }
+    
+        function confetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.opacity = Math.random();
+                confetti.innerText = ['🎉', '🎊', '💖', '✨'][Math.floor(Math.random() * 4)];
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+    
+        // Ensure card stays within viewport on window resize
+        window.addEventListener('resize', positionCard);
+    
+        // Initial positioning
+        positionCard();
     </script>
+    
 </body>
 </html>
