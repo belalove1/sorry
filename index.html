@@ -278,6 +278,30 @@
                 to { text-shadow: 0 0 4px #ff69b4, 0 0 6px #ff69b4, 0 0 8px #ff69b4, 0 0 10px #ff69b4; }
             }
         }
+
+        
+
+        .music-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .music-button:hover {
+            transform: scale(1.1);
+            background-color: #ff1493;
+        }
     </style>
 </head>
 <body>
@@ -322,7 +346,17 @@
         <button onclick="redirectToWhatsapp()">Chat on WhatsApp 💬</button>
     </div>
 
+    <audio id="backgroundMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-cute.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button id="musicToggle" class="music-button">🎵</button>
+
+    
     <script>
+
+        
         let clickCount = 0;
         const requiredClicks = 5;
         const encouragingPhrases = [
@@ -418,6 +452,28 @@
         console.log("Script loaded");
 
         talkButton.addEventListener('click', (e) => e.preventDefault());
+
+        const backgroundMusic = document.getElementById('backgroundMusic');
+const musicToggle = document.getElementById('musicToggle');
+let isMusicPlaying = false;
+
+musicToggle.addEventListener('click', function() {
+    if (isMusicPlaying) {
+        backgroundMusic.pause();
+        musicToggle.textContent = '🔇';
+    } else {
+        backgroundMusic.play();
+        musicToggle.textContent = '🎵';
+    }
+    isMusicPlaying = !isMusicPlaying;
+});
+
+// Auto-play music when the page loads (optional)
+window.addEventListener('load', function() {
+    backgroundMusic.play();
+    isMusicPlaying = true;
+});
+
     </script>
 </body>
 </html>
