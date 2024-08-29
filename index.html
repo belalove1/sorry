@@ -42,7 +42,7 @@
         h1 {
             color: #ff69b4;
             font-size: 1.8em;
-            animation: glow 1.5s infinite alternate;
+            animation: glow 1s infinite alternate;
         }
         p {
             font-size: 16px;
@@ -266,6 +266,19 @@
                 transform: translateY(100vh);
             }
         }
+
+        
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5em;
+        text-shadow: 0 0 2px #ff69b4, 0 0 3px #ff69b4, 0 0 4px #ff69b4, 0 0 5px #ff69b4;
+    }
+    @keyframes glow {
+        from { text-shadow: 0 0 2px #ff69b4, 0 0 4px #ff69b4, 0 0 6px #ff69b4, 0 0 8px #ff69b4; }
+        to { text-shadow: 0 0 4px #ff69b4, 0 0 6px #ff69b4, 0 0 8px #ff69b4, 0 0 10px #ff69b4; }
+    }
+}
+        
     </style>
     
 </head>
